@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://placehold.co/16">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Data Visualizer</title>
+    <style>
+        body {
+            background-color: #d7f3ff;
+        }
+
+        rect:hover {
+            opacity: 0.5;
+        }
+
+        .bordered-svg {
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        #container svg {
+            transform: scale(1);
+        }
+
+        @media(max-width: 1700px) {
+            #container svg {
+                transform: scale(0.8);
+            }
+        }
+
+        @media(max-width: 1500px) {
+            #container svg {
+                transform: scale(0.6);
+            }
+        }
+
+        @media(max-width: 700px) {
+            #container svg {
+                transform: scale(0.4);
+            }
+        }
+
+        @media(max-width: 410px) {
+            #container svg {
+                transform: scale(0.3);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Tool Button -->
+    <div style="margin-top: 50px; margin-left: 5%">
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling">Open Tools</button>
+        <p>*Best viewed on 1920x1080 Display</p>
+    </div>
+    <!-- SideBar -->
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+        id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+        </div>
+
+        <div>
+            <div class="position-absolute top-50 start-0 translate-middle-y" style="margin-left: 10%">
+                <p class="h3">Choose Variable</p>
+                <select id="button" class="form-select" aria-label="Default select example" style="width:200px">
+                    <option selected>-- Select --</option>
+                </select><br>
+                <div style="display:flex; flex-direction: row;">
+                    <h3>Filters</h3>
+                </div style="display:flex; flex-direction: row;">
+                <p class="h5">End Year Range</p>
+                <select id="filter_endyear" class="filter_class form-select form-select-sm"
+                    aria-label="Small select example" style="width:150px">
+                    <option value="None">None</option>
+                    <option value="2025">2016-2025</option>
+                    <option value="2200">2026-2200</option>
+                </select>
+                <p class="h5">Topic</p>
+                <select id="filter_topic" class="filter_class form-select form-select-sm"
+                    aria-label="Small select example" style="width:150px">
+                    <option value="None">None</option>
+                </select>
+                <p class="h5">Sector</p>
+                <select id="filter_sector" class="filter_class form-select form-select-sm"
+                    aria-label="Small select example" style="width:150px">
+                    <option value="None">None</option>
+                </select>
+                <p class="h5">Region</p>
+                <select id="filter_region" class="filter_class form-select form-select-sm"
+                    aria-label="Small select example" style="width:150px">
+                    <option value="None">None</option>
+                </select>
+                <p class="h5">Pestle</p>
+                <select id="filter_pestle" class="filter_class form-select form-select-sm"
+                    aria-label="Small select example" style="width:150px">
+                    <option value="None">None</option>
+                </select>
+                <p class="h5">Source</p>
+                <select id="filter_source" class="filter_class form-select form-select-sm"
+                    aria-label="Small select example" style="width:150px">
+                    <option value="None">None</option>
+                </select>
+                <p class="h5">Country</p>
+                <select id="filter_country" class="filter_class form-select form-select-sm"
+                    aria-label="Small select example" style="width:150px">
+                    <option value="None">None</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Graph -->
+    <div id="container" class="position-absolute top-50 start-50 translate-middle"><svg></svg>
+    </div>
+    <!-- Footer -->
+    <div class="position-absolute bottom-0 start-50 translate-middle-x"
+        style="background-color: black;width: 100%; height: 5%;color: antiquewhite;display: grid;place-items: center;align-content: center;">
+        <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-c-circle"
+                viewBox="0 0 16 16">
+                <path
+                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.146 4.992c-1.212 0-1.927.92-1.927 2.502v1.06c0 1.571.703 2.462 1.927 2.462.979 0 1.641-.586 1.729-1.418h1.295v.093c-.1 1.448-1.354 2.467-3.03 2.467-2.091 0-3.269-1.336-3.269-3.603V7.482c0-2.261 1.201-3.638 3.27-3.638 1.681 0 2.935 1.054 3.029 2.572v.088H9.875c-.088-.879-.768-1.512-1.729-1.512" />
+            </svg> 2024 Made with <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-heart-fill" viewBox="0 0 16 16" style="--darkreader-inline-fill: currentColor;"
+                data-darkreader-inline-fill="">
+                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314">
+                </path>
+            </svg> by Sambit</p>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="index.js" type="module"></script>
+
+</html>
